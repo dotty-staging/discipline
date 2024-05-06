@@ -14,6 +14,7 @@ ThisBuild / tlJdkRelease := Some(8)
 
 ThisBuild / tlSonatypeUseLegacyHost := false
 ThisBuild / tlCiReleaseTags := false
+ThisBuild / tlFatalWarnings := false // disable fatal warnings in CI, as -Ykind-projector is now deprecated
 
 lazy val root = tlCrossRootProject
   .aggregate(core)
@@ -28,7 +29,6 @@ lazy val core = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     name := "discipline",
     moduleName := "discipline-core",
     libraryDependencies += "org.scalacheck" %%% "scalacheck" % "1.16.0",
-    tlFatalWarnings := false // disable fatal warnings in CI, as -Ykind-projector is now deprecated
   )
   .jsSettings(
     tlVersionIntroduced ~= {
